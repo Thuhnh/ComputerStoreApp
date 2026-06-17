@@ -1,18 +1,16 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import java.io.InputStream;
+import java.util.Comparator;
+import java.util.List;
 
 public class CatalogView {
 
@@ -24,6 +22,8 @@ public class CatalogView {
     private TilePane categoriesGrid;
     private Label categoryTitle;
     private TextField searchField;
+    private ComboBox<String> sortCombo;
+    private String currentCategory = "";
 
     public CatalogView(Runnable onCartUpdate) {
         this.onCartUpdate = onCartUpdate;
@@ -46,13 +46,23 @@ public class CatalogView {
         HBox searchBox = new HBox(10);
         searchField = new TextField();
         searchField.setPromptText("Поиск товаров...");
-        searchField.setPrefWidth(400);
+        searchField.setPrefWidth(350);
         Button btnSearch = new Button("Найти");
         btnSearch.setOnAction(e -> searchProducts());
 
+        sortCombo = new ComboBox<>();
+        sortCombo.getItems().addAll("По умолчанию", "Сначала дешёвые", "Сначала дорогие");
+        sortCombo.setValue("По умолчанию");
+        sortCombo.setStyle("-fx-background-color: #3c3c3c; -fx-text-fill: white; -fx-background-radius: 5;");
+        sortCombo.setOnAction(e -> {
+            if (!currentCategory.isEmpty()) {
+                loadProductsByCategoryWithSort(currentCategory, sortCombo.getValue());
+            }
+        });
+
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        searchBox.getChildren().addAll(spacer, searchField, btnSearch);
+        searchBox.getChildren().addAll(spacer, searchField, btnSearch, sortCombo);
 
         categoriesPanel = new VBox(15);
         categoriesPanel.setFillWidth(true);
@@ -184,10 +194,23 @@ public class CatalogView {
     }
 
     private void loadProductsByCategory(String category) {
+        currentCategory = category;
+        sortCombo.setValue("По умолчанию");
+        loadProductsByCategoryWithSort(category, "По умолчанию");
+    }
+
+    private void loadProductsByCategoryWithSort(String category, String sortType) {
         productsGrid.getChildren().clear();
         categoryTitle.setText(category);
 
-        var products = DatabaseHelper.getInstance().getProductsByCategory(category);
+        List<Product> products = DatabaseHelper.getInstance().getProductsByCategory(category);
+
+        if ("Сначала дешёвые".equals(sortType)) {
+            products.sort(Comparator.comparingInt(Product::getPrice));
+        } else if ("Сначала дорогие".equals(sortType)) {
+            products.sort(Comparator.comparingInt(Product::getPrice).reversed());
+        }
+
         for (Product p : products) {
             ProductCard card = new ProductCard(p, () -> {
                 if (onCartUpdate != null) onCartUpdate.run();
