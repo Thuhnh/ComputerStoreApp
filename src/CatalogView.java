@@ -128,7 +128,22 @@ public class CatalogView {
         productsScroll.setStyle("-fx-background-color: transparent;");
         VBox.setVgrow(productsScroll, Priority.ALWAYS);
 
-        productsPanel.getChildren().addAll(topBar, productsScroll);
+        Button btnScrollTop = new Button("▲ Наверх");
+        btnScrollTop.setStyle("-fx-background-color: #0078d4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 15;");
+        btnScrollTop.setVisible(false);
+        btnScrollTop.setOnAction(e -> productsScroll.setVvalue(0));
+
+        productsScroll.vvalueProperty().addListener((obs, old, val) -> {
+            btnScrollTop.setVisible(val.doubleValue() > 0.3);
+        });
+
+        StackPane productContent = new StackPane();
+        productContent.getChildren().addAll(productsScroll, btnScrollTop);
+        StackPane.setAlignment(btnScrollTop, Pos.BOTTOM_RIGHT);
+        StackPane.setMargin(btnScrollTop, new Insets(0, 20, 20, 0));
+        VBox.setVgrow(productContent, Priority.ALWAYS);
+
+        productsPanel.getChildren().addAll(topBar, productContent);
 
         view.getChildren().addAll(title, searchBox, categoriesPanel, productsPanel);
     }
