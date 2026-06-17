@@ -187,10 +187,19 @@ public class MainWindow {
     }
 
     private void logout() {
-        MainApp.userId = -1;
-        MainApp.userRole = "";
-        MainApp.userName = "";
-        LoginWindow loginWindow = new LoginWindow(stage);
-        loginWindow.show();
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Подтверждение");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Вы уверены, что хотите выйти?");
+
+        confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                MainApp.userId = -1;
+                MainApp.userRole = "";
+                MainApp.userName = "";
+                LoginWindow loginWindow = new LoginWindow(stage);
+                loginWindow.show();
+            }
+        });
     }
 }
