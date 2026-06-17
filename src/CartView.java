@@ -67,7 +67,19 @@ public class CartView {
 
         refreshCart();
     }
-
+    private void clearCartWithConfirm() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Подтверждение");
+        alert.setHeaderText(null);
+        alert.setContentText("Вы уверены, что хотите очистить корзину?");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                DatabaseHelper.getInstance().clearCart();
+                refreshCart();
+                if (onCartUpdate != null) onCartUpdate.run();
+            }
+        });
+    }
     private void refreshCart() {
         cartItems = DatabaseHelper.getInstance().getCart();
         cartItemsContainer.getChildren().clear();
