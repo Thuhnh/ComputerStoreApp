@@ -1,0 +1,293 @@
+/* Корневые настройки */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", "Arial", sans-serif;
+    -fx-background-color: #f8f9fa;
+}
+
+/* ========== КНОПКИ ========== */
+.button {
+    -fx-background-color: #4361ee;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: #3a56d4;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+.button:pressed {
+    -fx-background-color: #2f4bcc;
+}
+
+/* Кнопка входа/регистрации */
+.button-primary {
+    -fx-background-color: #4361ee;
+    -fx-text-fill: white;
+}
+
+/* Кнопка корзина */
+.button-cart {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+}
+
+.button-cart:hover {
+    -fx-background-color: #256b2a;
+}
+
+/* Кнопка удалить */
+.button-danger {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+}
+
+.button-danger:hover {
+    -fx-background-color: #c82333;
+}
+
+/* Кнопка отмена/назад */
+.button-secondary {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #5a6268;
+}
+
+/* Кнопка успех/оплатить */
+.button-success {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+}
+
+.button-success:hover {
+    -fx-background-color: #218838;
+}
+
+/* ========== ПОЛЯ ВВОДА ========== */
+.text-field, .password-field, .text-area {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #212529;
+    -fx-prompt-text-fill: #6c757d;
+    -fx-background-radius: 8;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: #4361ee;
+    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.2), 4, 0, 0, 0);
+}
+
+/* ========== ТАБЛИЦЫ ========== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 12;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12 8 12 8;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #495057;
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #212529;
+    -fx-padding: 10 8 10 8;
+    -fx-border-color: #f0f0f0;
+    -fx-font-size: 13px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #fefefe;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: white;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: #1565c0;
+}
+
+/* ========== ВКЛАДКИ ========== */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-header-area {
+    -fx-padding: 8 0 0 0;
+}
+
+.tab {
+    -fx-background-color: #f1f3f5;
+    -fx-text-fill: #495057;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 8 8 0 0;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.tab:selected {
+    -fx-background-color: #4361ee;
+    -fx-text-fill: white;
+}
+
+.tab:hover:not(:selected) {
+    -fx-background-color: #e9ecef;
+}
+
+/* ========== ЛЕЙБЛЫ ========== */
+.label {
+    -fx-text-fill: #212529;
+    -fx-font-size: 13px;
+}
+
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+}
+
+.label-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c757d;
+}
+
+.label-warning {
+    -fx-text-fill: #dc3545;
+    -fx-font-size: 12px;
+}
+
+.label-success {
+    -fx-text-fill: #28a745;
+    -fx-font-size: 12px;
+}
+
+/* ========== КАРТОЧКИ ТОВАРОВ ========== */
+.product-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 12;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 2);
+}
+
+.product-card:hover {
+    -fx-border-color: #4361ee;
+    -fx-effect: dropshadow(gaussian, rgba(67,97,238,0.15), 8, 0, 0, 4);
+}
+
+/* ========== КАТЕГОРИИ (ПЛИТКИ) ========== */
+.category-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.03), 2, 0, 0, 1);
+}
+
+.category-card:hover {
+    -fx-border-color: #4361ee;
+    -fx-background-color: #f8f9fa;
+}
+
+/* ========== КОМБОБОКСЫ ========== */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 4 8 4 8;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #212529;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #e3f2fd;
+}
+
+/* ========== СКРОЛЛБАРЫ ========== */
+.scroll-bar:vertical {
+    -fx-background-color: #f1f3f5;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #adb5bd;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #6c757d;
+}
+
+/* ========== ДИАЛОГИ ========== */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #4361ee;
+    -fx-background-radius: 16 16 0 0;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .content {
+    -fx-background-color: white;
+}
+
+/* ========== РАЗДЕЛИТЕЛИ ========== */
+.separator .line {
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1;
+}
+
+/* ========== АНИМАЦИИ (опционально) ========== */
+.button, .category-card, .product-card {
+    -fx-transition: all 0.2s ease;
+}
